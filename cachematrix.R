@@ -4,41 +4,38 @@
 ## caches/prints the calculated final inverse values.If values already exist,
 ## the existing cached values are printed. 
 
-makeCacheMatrix <- function(x = matrix()) {
+makeCacheMatrix <- function(data = matrix()) {
         s <- NULL
         
         ## Function setting the matrix.
         
-        set <- function(y) {
-                x <<- y
+        set <- function(temp) {
+                data <<- temp
                 s <<- NULL
         }
         
         ## getting the matrix for 'cachesolve'
         
-        get <- function() x
+        get <- function() data
         
         ## Functions for defining the matrix inverse, and retrieving
         ## the matrix inverse.
         
         setsolve <- function(solve) s <<- solve
         getsolve <- function() s        
-        list(set = set, get = get,
-             setsolve = setsolve,
-             getsolve = getsolve)
-        
-        
+        list(set = set, get = get, setsolve = setsolve, getsolve = getsolve)
+              
 }
 
 ## cachesolve determines if there is existing cached values for the matrix
 ## inverse, and if there is not it solves for the inverse of the matrix. 
 
-cachesolve <- function(x, ...) {
+cachesolve <- function(data, ...) {
         
         ## Checking getsolve to determine if there is an existing cached 
         ## matrix inverse. Retrieving value if it exists.
         
-        s <- x$getsolve()
+        s <- data$getsolve()
         
         if(!is.null(s)) {
                 message("Getting cached matrix data")
@@ -48,9 +45,9 @@ cachesolve <- function(x, ...) {
         ## Performing inverse operation on the matrix data and setting 
         ## the solution.
         
-        Matrix <- x$get()
+        Matrix <- data$get()
         s <- solve(Matrix, ...)
-        x$setsolve(s)
+        data$setsolve(s)
         
         ## Printing the matrix inverse
         
