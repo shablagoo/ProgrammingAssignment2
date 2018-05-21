@@ -2,7 +2,7 @@
 ## it will then fetch the values so that they can be solved in 'cachesolve'.
 ## The function also sets a NULL value for s (the inverse of the matrix), and
 ## caches/prints the calculated final inverse values.If values already exist,
-## the exisintg cached values are printed. 
+## the existing cached values are printed. 
 
 makeCacheMatrix <- function(x = matrix()) {
         s <- NULL
